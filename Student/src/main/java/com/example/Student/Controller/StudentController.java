@@ -1,5 +1,6 @@
 package com.example.Student.Controller;
 
+import com.example.Student.Dto.StudentUpdateDTO;
 import com.example.Student.Service.StudentService;
 import com.example.Student.entity.Student;
 import jakarta.validation.Valid;
@@ -46,5 +47,12 @@ public class StudentController {
     public String delete(@PathVariable Long id) {
         studentService.deleteStudentById(id);
         return "Student deleted successfully";
+    }
+    @PatchMapping("/{id}")
+    public Student updateStudentPartial(
+            @PathVariable Long id,
+            @RequestBody StudentUpdateDTO dto) {
+
+        return studentService.updateStudentPartial(id, dto);
     }
 }
